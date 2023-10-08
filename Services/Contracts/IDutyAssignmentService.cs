@@ -6,6 +6,6 @@ namespace DutyAppDB.Services.Contracts
     public interface IDutyAssignmentService
     {
         Task AssignDutyToStudent();
-        //DutyAssignment dutyAssignment
+       // Task ViewStudentAssignments();
     }
 }

@@ -14,7 +14,7 @@ public class Menu
             while (flag)
             {
                 PrintMenu();
-                Console.Write("\nPlease enter your preferred option: ");
+                Helpers.InfoTextOutput("\nPlease enter your preferred option: ");
                 string option = Console.ReadLine()!;
 
                 switch (option)
@@ -37,8 +37,9 @@ public class Menu
                         Console.WriteLine("\nPlease select an option\n");
                         break;
                     default:
-                       // Console.WriteLine("Please enter an option from those listed below");
-                        throw new InvalidOperationException("Unknown operation!");
+                         Helpers.FailureTextOutput("Invalid input!");
+                        //throw new InvalidOperationException("Unknown operation!");
+                        break; 
                 }
             }
         }
@@ -59,7 +60,7 @@ public class Menu
         while (flag)
         {
             PrintDutyMenu();
-            Console.Write("\nPlease enter your option: ");
+            Helpers.InfoTextOutput("\nPlease enter your option: ");
             string option = Console.ReadLine()!;
 
             switch (option)
@@ -88,7 +89,7 @@ public class Menu
                     flag = false;
                     break;
                 default:
-                    Console.WriteLine("Invalid input!");
+                    Helpers.FailureTextOutput("Invalid input!");
                     break;
             }
         }
@@ -101,7 +102,7 @@ public class Menu
         while (flag)
         {
             PrintDutyAssignmentMenu();
-            Console.Write("\nPlease enter your option: ");
+            Helpers.InfoTextOutput("\nPlease enter your option: ");
             string option = Console.ReadLine()!;
 
             switch (option)
@@ -114,7 +115,7 @@ public class Menu
                     flag = false;
                     break;
                 default:
-                    Console.WriteLine("Invalid input!");
+                    Helpers.FailureTextOutput("Invalid input!");
                     break;
             }
         }
@@ -127,7 +128,7 @@ public class Menu
         while (flag)
         {
             PrintStudentMenu();
-            Console.Write("\nPlease enter your option: ");
+            Helpers.InfoTextOutput("\nPlease enter your option: ");
             string option = Console.ReadLine()!;
 
             switch (option)
@@ -156,7 +157,7 @@ public class Menu
                     flag = false;
                     break;
                 default:
-                    Console.WriteLine("Invalid input!");
+                    Helpers.FailureTextOutput("Invalid input!");
                     break;
             }
         }

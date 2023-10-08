@@ -1,4 +1,5 @@
-﻿using DutyAppDB.Models.Entities;
+﻿using ConsoleTables;
+using DutyAppDB.Models.Entities;
 using DutyAppDB.Repositories;
 using DutyAppDB.Repositories.Contracts;
 using DutyAppDB.Services.Contracts;
@@ -13,9 +14,11 @@ namespace DutyAppDB.Services
         private readonly IStudentRepository _studentRepository;
         private readonly IDutyAssignmentRepository _dutyAssignmentRepository;
 
-        public DutyAssignmentService(IDutyAssignmentRepository dutyAssignmentRepository)
+        public DutyAssignmentService(IDutyAssignmentRepository dutyAssignmentRepository, IDutyRepository dutyRepository, IStudentRepository studentRepository)
         {
             _dutyAssignmentRepository = dutyAssignmentRepository;
+            _dutyRepository = dutyRepository;
+            _studentRepository = studentRepository;
         }
 
         public async Task AssignDutyToStudent()
@@ -75,6 +78,34 @@ namespace DutyAppDB.Services
                 Helpers.FailureTextOutput(ex.Message);
             }
         }
+        //public async Task GetAllDutyAssignments()
+        //{
+        //    try
+        //    {
+        //        var duties = await _dutyRepository.GetAllDuty();
+        //        var students = await _studentRepository.GetAllStudent();
+
+        //        if (duties.Count > 0 && students.Count > 0)
+        //        {
+        //            //duties = duties.OrderBy(duty => duty.Name).ToList();
+        //            var table = new ConsoleTable("STUDENT NAME", "DUTY NAME");
+
+        //            foreach (var duty in duties)
+        //            {
+        //                table.AddRow(duty.Name, duty.Description);
+        //            }
+
+        //            table.Write(Format.Alternative);
+        //            return;
+        //        }
+
+        //        Helpers.InfoTextOutput("No records found");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Helpers.FailureTextOutput(ex.Message);
+        //    }
+        //}
     }
 }
 

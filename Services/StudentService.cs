@@ -34,26 +34,37 @@ public class StudentService : IStudentService
             //Console.Write("Enter the Duty LastName: ");
             //string lastName = Console.ReadLine();
 
-            var student = new CreateStudentDto
-            {
-                FirstName = dutyName,
-                LastName = lastName,
-                MiddleName = middleName,
-                Email = email,
-                //DateOfBirth
-                //Gender
-            };
 
-            int rowsAffected = await _studentRepository.CreateStudent(student);
 
-            if (rowsAffected == 1)
+            if (email.EndsWith("@gmail.com"))
             {
-                Helpers.SuccessTextOutput("Student created successfully!");
+                var student = new CreateStudentDto
+                {
+                    FirstName = dutyName,
+                    LastName = lastName,
+                    MiddleName = middleName,
+                    Email = email,
+                    //DateOfBirth
+                    //Gender
+                };
+
+                int rowsAffected = await _studentRepository.CreateStudent(student);
+
+                if (rowsAffected == 1)
+                {
+                    Helpers.SuccessTextOutput("Student created successfully!");
+                }
+                else
+                {
+                    Helpers.FailureTextOutput("Could not create student!");
+                }
             }
             else
             {
-                Helpers.FailureTextOutput("Could not create student!");
+                Helpers.FailureTextOutput("Email is invalid");
             }
+
+            
         }
         catch (Exception ex)
         {

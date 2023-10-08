@@ -36,7 +36,7 @@ public class DutyRepository : IDutyRepository
         {
             _dbConnection.Open();
 
-            var sql = "SELECT Id, Name, Description FROM duty;";
+            var sql = "SELECT Id, Name, Description  FROM duty WHERE IsDeleted = 0;";
 
             var result = await _dbConnection.QueryAsync<ReadOnlyDutyDto>(sql);
 
@@ -52,7 +52,7 @@ public class DutyRepository : IDutyRepository
         {
         _dbConnection.Open();
 
-        var sql = "UPDATE duty SET Name = @Name, Description = @Description WHERE Id = @Id;";
+        var sql = "UPDATE duty SET Name = @Name, Description = @Description WHERE Id = @Id ;";
 
         updatedDuty.Id = id; // Assign the duty ID to the DTO
 
@@ -67,7 +67,7 @@ public class DutyRepository : IDutyRepository
         {
             _dbConnection.Open();
 
-            var sql = "DELETE FROM duty WHERE Id = @Id;";
+            var sql = "UPDATE duty SET IsDeleted = 1 WHERE Id = @Id";
 
             int rowsAffected = await _dbConnection.ExecuteAsync(sql, new { Id = id });
 
@@ -80,7 +80,7 @@ public class DutyRepository : IDutyRepository
         {
             _dbConnection.Open();
 
-            var sql = "SELECT Id, Name, Description FROM duty WHERE Id = @Id;";
+            var sql = "SELECT Id, Name, Description FROM duty WHERE Id = @Id AND IsDeleted = 0;";
 
             var result = await _dbConnection.QueryFirstOrDefaultAsync<ViewDutyDetailDto>(sql, new { Id = id });
 
